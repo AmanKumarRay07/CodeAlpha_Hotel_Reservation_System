@@ -14,6 +14,7 @@ static int days[] = new int[5];
   
     header();
     int x;
+    int y;
 
     do{
 
