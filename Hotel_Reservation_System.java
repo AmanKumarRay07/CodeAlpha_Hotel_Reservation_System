@@ -2,19 +2,27 @@ import java.util.Scanner;
 public class Hotel_Reservation_System {
 
   static Scanner sc=new Scanner(System.in);
+
   static int roomnumber[]={101,102,103,104,105};
-  static String roomtype[]={"standard","Premium","Deluxe"," Executive"," Suite"};
+
+  static String roomtype[]={"standard","Premium","Deluxe","Executive","Suite"};
+
   static int roomprice[]={1500,1800,2000,2500,3500};
+
   static boolean booked[] = {false, false, false, false, false};
+
   static String bookingID []={"B001","B002","B003","B004","B005"};
+
   static String customerName[] = new String[5];
+
 static String mobileNo[] = new String[5];
+
 static int days[] = new int[5];
+
   public static void main(String[] args) {
   
     header();
     int x;
-    int y;
 
     do{
 
@@ -22,7 +30,69 @@ static int days[] = new int[5];
 
          switch (x) {
       case 1:
-        System.out.println();
+          availablerooms();
+
+        break;
+      
+        case 2:
+
+          bookRoom();
+         
+        break;
+
+     case 3:
+      viewBooking();
+      
+       break;
+
+         case 4:
+          cancelbooking();
+       
+        break;
+
+         case 5:
+        System.out.println("==========================================");
+        System.out.println("  Thank You for Visiting Our Hotel!");
+        System.out.println("  Thank You for Using Our System!");
+        System.out.println("  We Hope to Serve You Again.");
+        System.out.println("==========================================");
+    
+        break;
+    
+      default:
+        System.out.println("Inter a valid number ");
+        break;
+    }
+    }while(x!=5);
+
+ 
+   
+
+  }
+  public static void header()
+  {
+    System.out.println("=====================================================================================================================");
+    System.out.println("                                            HOTEL_RESERVATION_SYSTEM                                                 ");
+    System.out.println("=====================================================================================================================");
+  }
+  public static int menu()
+  {
+    System.out.println("======================MENU OF HOTEL RESERVATION SYSTEM==========================");
+    System.out.println("1. Search Available Rooms");
+    System.out.println("2.Booking Room");
+    System.out.println("3.View Booking Room");
+    System.out.println("4.Cancel Booking");
+    System.out.println("5.Exit");
+    System.out.println();
+    System.out.print("Enter your Choice::");
+    int n=sc.nextInt();
+     return n;
+
+  }
+  
+  public static void availablerooms()
+  {
+      System.out.println();
         System.out.println("=========AVAILABLE ROOM==========");
         System.out.println("Room_No               Room_Type            Room_Price");
         for(int i=0; i<roomnumber.length; i++)
@@ -31,11 +101,12 @@ static int days[] = new int[5];
          System.out.println(" "+roomnumber[i]+"                  "+roomtype[i]+"                "+roomprice[i]);
         }
         System.out.println();
-         break;
-      
-        case 2:
-          System.out.println();
-          System.out.println("=========Room Booking===========");
+  }
+
+  public  static void bookRoom()
+  {
+     
+          System.out.println("\n=========Room Booking===========");
 
           System.out.print("Enter the Room No::");
           int r=sc.nextInt();
@@ -68,7 +139,7 @@ static int days[] = new int[5];
                 System.out.println("No of Days   ::"+day);
                 System.out.println("Total Amount ::"+total);
 
-                System.out.println("==========PAYMENT========");
+                System.out.println("\n==========PAYMENT========");
                 System.out.println("1. Pay Now");
                 System.out.println("2. Cancel");
                 System.out.print("Enter the Choice::");
@@ -77,9 +148,9 @@ static int days[] = new int[5];
                  {
                   System.out.println("Payment Successful!");
                   booked[i] = true;
-                 customerName[i] = name;
-                mobileNo[i] = mob;
-                days[i] = day;
+                  customerName[i] = name;
+                  mobileNo[i] = mob;
+                  days[i] = day;
                   System.out.println();
                   System.out.println("========== BOOKING CONFIRMED ==========");
                   System.out.println("Booking ID    :: "+bookingID[i]);
@@ -88,8 +159,8 @@ static int days[] = new int[5];
                   System.out.println("Room Category :: "+roomtype[i]);
                   System.out.println("Number of Days:: "+day);
                   System.out.println("Total Amount  :: "+total);
-                  System.out.println("Booking Status::  Confirmed");
-                  System.out.println();
+                  System.out.println("Booking Status::  Confirmed \n");
+                  
                  }
                  else if(Choice2==2)
                  {
@@ -116,10 +187,11 @@ static int days[] = new int[5];
             System.out.println("Invalid Room Number!");
           }
        
-        break;
+  }
 
-     case 3:
-      System.out.println();
+  public static void viewBooking()
+  {
+    System.out.println();
       System.out.println("=========VIEW BOOKING=============");
 
       System.out.print("Enter the Room_No::");
@@ -139,8 +211,8 @@ static int days[] = new int[5];
               System.out.println("Room Category :: "+roomtype[i]);
               System.out.println("Number of Days:: "+days[i]);
               System.out.println("Total Amount  :: "+roomprice[i] * days[i]);
-              System.out.println("Booking Status::  Confirmed");
-              System.out.println();
+              System.out.println("Booking Status::  Confirmed \n");
+              
             }
             else
             {
@@ -155,12 +227,13 @@ static int days[] = new int[5];
       {
         System.out.println("Invalid Room  No \n");
       }
-       break;
+  }
 
-         case 4:
-        System.out.println("=========CANCEL BOOKING===========");
+  public static void cancelbooking()
+  {
+     System.out.println("=========CANCEL BOOKING===========");
 
-        System.out.println("Enter the Room No :");
+        System.out.print("Enter the Room No :");
         int cancelroom =sc.nextInt();
         boolean roomFound = false;
 
@@ -172,7 +245,7 @@ static int days[] = new int[5];
             if(booked[i]==true)
             {
              
-              System.out.println("=======Booking Details==========");
+              System.out.println("\n=======Booking Details==========");
                System.out.println("Booking ID    :: "+bookingID[i]);
               System.out.println("Customer Name :: "+customerName[i]);
               System.out.println("Room No       :: "+roomnumber[i]);
@@ -181,28 +254,31 @@ static int days[] = new int[5];
               System.out.println("Total Amount  :: "+roomprice[i] * days[i]);
               System.out.println("Booking Status::  Confirmed");
               
-              System.out.println("Are you sure you want to cancel");
+              
+              System.out.println("\n======= CONFIRM BOOKING CANCELLATION =======");
+              System.out.println("Are you sure you want to cancel this booking?");
               System.out.println("1. Yes, Cancel Booking");
-              System.out.println("2.No Go Back");
-              int choice3=sc.nextInt();
+              System.out.println("2. No, Keep Booking");
+              System.out.print("Enter your choice (1 or 2):: ");
+              int choice3 = sc.nextInt();
 
               if(choice3==1)
               {
                 booked[i] = false;
-                System.out.println("Booking Cancelled Successfully!");
+                System.out.println("\n Booking Cancelled Successfully! \n");
               }
               else if(choice3==2)
               {
-                System.out.println("Cancellation Aborted!");
+                System.out.println("\n Cancellation Aborted! \n");
               }
               else
               {
-                System.out.println("Invalid Choice!");
+                System.out.println("\n Invalid Choice! \n");
               }
             }
             else
             {
-              System.out.println("Room is not booked. Nothing to cancel.");
+              System.out.println("\n Room is not booked. Nothing to cancel.\n");
             }
           }
         }
@@ -210,44 +286,6 @@ static int days[] = new int[5];
         {
           System.out.println("Invalid Room No");
         }
-
-        break;
-
-         case 5:
-        System.out.println("=========EXIT=====================");
-        break;
-
-         case 6:
-        
-        break;
-    
-      default:
-        System.out.println("Inter a valid number ");
-        break;
-    }
-    }while(x!=6);
-
- 
-   
-
-  }
-  public static void header()
-  {
-    System.out.println("=====================================================================================================================");
-    System.out.println("                                            HOTEL_RESERVATION_SYSTEM                                                 ");
-    System.out.println("=====================================================================================================================");
-  }
-  public static int menu()
-  {
-    System.out.println("1. Search Available Rooms");
-    System.out.println("2.Booking Room");
-    System.out.println("3.View Booking Room");
-    System.out.println("4.Cancel Booking");
-    System.out.println("5.Exit");
-    System.out.println();
-    System.out.print("Enter your Choice::");
-    int n=sc.nextInt();
-     return n;
 
   }
  
